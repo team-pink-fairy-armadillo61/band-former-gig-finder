@@ -37,16 +37,16 @@ const router = createBrowserRouter([
     element: <Group />
   },
   {
-    path: "*",
+    path: "/notfound",
     element: <NotFound />,
   },
 
 ]);
 
 const App = props => {
-    return (
-      <RouterProvider router = {router} />
-    );
+  return (
+    <RouterProvider router = {router} />
+  );
 };
 
 
