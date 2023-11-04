@@ -21,7 +21,7 @@ const config = {
       publicPath: '/',
     },
     headers: { 'Access-Control-Allow-Origin': '*' },
-    proxy: {
+    proxy:
       '/api/**': {
         target: 'http://localhost:3000/',
         secure: false,
