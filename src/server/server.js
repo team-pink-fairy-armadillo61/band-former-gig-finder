@@ -2,8 +2,8 @@ const express = require('express');
 require('./models/bandFormerModels');
 const app = express();
 
-const postsRouter = require('.routes/posts.js');
-const userRouter = require('.routes/posts.js');
+const { postsRouter } = require('./routes/posts.js');
+const { usersRouter } = require('./routes/users.js');
 
 const PORT = 3000;
 
@@ -11,17 +11,12 @@ const PORT = 3000;
 app.use(express.json());
 
 
-app.get('/',
-(req, res)=> {
-  return res.status(200).send("IT'S ALIVE!");
-});
+app.use('/posts', postsRouter);
+
+app.use('/users', usersRouter);
 
 
 
-
-app.use('/posts', post);
-
-app.use();
 
 app.use((req, res) => res.sendStatus(404));
 
