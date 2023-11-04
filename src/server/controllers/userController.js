@@ -46,16 +46,3 @@ userController.getUser = async (req, res, next) => {
   }
 };
 
-userController.deletePost = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const deletedPost = await model.Post.findOneAndDelete({_id: id});
-    res.locals.deletedPost = deletedPost;
-    return next();
-  } catch (error) {
-    next({
-      log: 'Express error handler caught error at userController.deletePost',
-      message: {err: 'Error Occured'},
-    });
-  }
-};
