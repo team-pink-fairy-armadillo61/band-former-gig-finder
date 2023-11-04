@@ -16,7 +16,11 @@ cookieController.startSessionSetCookie = (req, res, next) => {
     });
     return next();
   }catch(err) {
-    return next();
+    return next({
+      log: `cookieController.startSessionCookie: An error occured > ${err}`,
+      status: 500,
+      message: { err: 'An error occurred' },
+    });
   }
 };
 
@@ -36,7 +40,11 @@ cookieController.isLoggedIn = async (req, res, next) => {
         return next();
       }
     } catch(err) {
-      console.log
+      return next({
+        log: `cookieController.isLoggedIn: An error occured > ${err}`,
+        status: 500,
+        message: { err: 'An error occurred' },
+      });
     }
   }
 }
