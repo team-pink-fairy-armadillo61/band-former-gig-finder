@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
-
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Profile from './routes/Profile.jsx';
 import Login from './routes/Login.jsx';
@@ -13,42 +8,35 @@ import NotFound from './routes/NotFound.jsx';
 import Feed from './routes/Feed.jsx';
 import Group from './routes/Group.jsx';
 
-
-
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Feed />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/logout",
+    path: '/logout',
     element: <Logout />,
   },
   {
-    path: "/user/:userID",
+    path: '/user/:userID',
     element: <Profile />,
   },
   {
     path: '/group/:groupid',
-    element: <Group />
+    element: <Group />,
   },
   {
-    path: "/notfound",
+    path: '/notfound',
     element: <NotFound />,
   },
-
 ]);
 
-const App = props => {
-  return (
-    <RouterProvider router = {router} />
-  );
+const App = (props) => {
+  return <RouterProvider router={router} />;
 };
-
-
 
 export default App;
