@@ -1,5 +1,5 @@
 const express = require('express');
-
+require('./models/bandFormerModels');
 const app = express();
 
 const PORT = 3000;
