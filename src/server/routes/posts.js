@@ -20,7 +20,7 @@ postsRouter.get('/:id',
 postsRouter.post('/', 
 //middleware goes here  
   (req, res) => {
-    return res.status(200).send(`postsRouter.post/:id > working! ${req.params.id}`/*some stuff from middleware*/);
+    return res.status(200).send(`postsRouter.post / > working!`/*some stuff from middleware*/);
   });
 
 //patch a post by id
@@ -36,24 +36,6 @@ postsRouter.delete('/:id',
   (req, res) => {
     return res.status(200).send(`postsRouter.delete/:id > working! ${req.params.id}`/*some stuff from middleware*/);
   });
-
-///////
-
-//get all users
-
-
-//post new user
-
-
-
-//get one user by ID
-
-
-//patch user by ID
-
-
-
-//delete user by id
 
 
 
