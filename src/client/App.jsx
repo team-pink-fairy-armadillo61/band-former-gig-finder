@@ -9,6 +9,7 @@ import {
 import Profile from './routes/Profile.jsx';
 import Login from './routes/Login.jsx';
 import Logout from './routes/Logout.jsx';
+import Signup from './routes/Signup.jsx';
 import NotFound from './routes/NotFound.jsx';
 import Feed from './routes/Feed.jsx';
 import Group from './routes/Group.jsx';
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/logout",
     element: <Logout />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
   {
     path: "/user/:userID",
