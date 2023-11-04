@@ -18,7 +18,7 @@ userController.updateUser = async (req, res, next) => {
 
     return next();
   } catch (error) {
-    next({
+    return next({
       log: 'Express error handler caught error at userController.updateUser',
       message: {err: 'Error Occured'},
     });
@@ -39,7 +39,7 @@ userController.getUser = async (req, res, next) => {
     res.locals.foundUser = foundUser;
 
   } catch (error) {
-    next({
+    return next({
       log: 'Express error handler caught error at userController.getUser',
       message: {err: 'Error Occured'},
     });

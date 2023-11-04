@@ -9,7 +9,7 @@ postController.addPost = async (req, res, next) => {
     return next();
 
   } catch (error) {
-    next({
+    return next({
       log: 'Express error handler caught error at postController.addPost',
       message: {err: 'Error Occured'}, 
     });
@@ -22,7 +22,7 @@ postController.getPosts = async (req, res, next) => {
     res.locals.posts = posts;
     return next();
   } catch (error) {
-    next({
+    return next({
       log: 'Express error handler caught error at postController.getPosts',
       message: {err: 'Error Occured'},
     });
@@ -39,7 +39,7 @@ postController.updatePost = async (req, res, next) => {
     res.locals.updatedPost = updatedPost;
     return next();
   } catch (error) {
-    next({
+    return next({
       log: 'Express error handler caught error at postController.updatePost',
       message: {err: 'Error Occured'},
     });  
@@ -53,7 +53,7 @@ postController.deletePost = async (req, res, next) => {
     res.locals.deletedPost = deletedPost;
     return next();
   } catch (error) {
-    next({
+    return next({
       log: 'Express error handler caught error at userController.deletePost',
       message: {err: 'Error Occured'},
     });
