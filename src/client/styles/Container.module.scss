@@ -1,0 +1,7 @@
+@import 'variables';
+@import 'mixins';
+
+.class_example {
+    @include mixins.testing-border;
+    background-color: variables.$my-cool-variable;
+}
