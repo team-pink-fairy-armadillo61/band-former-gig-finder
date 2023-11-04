@@ -5,14 +5,6 @@ import { Link } from 'react-router-dom';
 
 const Logout = props => {
   
-  // const loader = async () => {
-  //   const user = await getUser();
-  //   if (!user) {
-  //     return redirect("/login");
-  //   }
-  //   return null;
-  // };
-
   
   return (
     <div className='wrap-container'>
