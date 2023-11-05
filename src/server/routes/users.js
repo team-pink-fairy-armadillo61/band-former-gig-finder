@@ -4,25 +4,26 @@ const express = require('express');
 const usersRouter = express.Router();
 
 
-//get all users
+//get all users//don't use this
 usersRouter.get('/', 
 //middleware goes here  
   (req, res) => {
     return res.status(200).send(`usersRouter.get / > working!`/*some stuff from middleware*/);
   });
 
-//post new user
-usersRouter.post('/', 
+//post new user (register)
+usersRouter.post('/register', 
   //createUser
-  //setCookie
+  //login user
+  //setLocalStorage
   (req, res) => {
     return res.status(200).send(`usersRouter.post/:id > working! ${req.params.id}`/*some stuff from middleware*/);
   });
 
-//login route
+//login route -get un pw, return jwt
 usersRouter.post('/login', 
   //verifyUser
-  //setCookieStartSession
+  //setLocalStorage
   (req, res) => {
     const resp = {
 
@@ -31,21 +32,10 @@ usersRouter.post('/login',
   });
 
 //logout route
-usersRouter.post('/logout', 
-  //verifyUser
-  //setCookieStartSession
-  (req, res) => {
-    const resp = {
-
-    };
-    return res.status(200).json(resp);
-  });
-
-
 
 //get one user by ID
 usersRouter.get('/:id', 
-//middleware goes here  
+  //verify user (LocalStorage) 
   (req, res) => {
     return res.status(200).send( `usersRouter.get/:id > working! ${req.params.id}`/*some stuff from middleware*/);
   });
