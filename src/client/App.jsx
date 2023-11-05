@@ -1,32 +1,30 @@
 import React from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
-
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Profile from './routes/Profile.jsx';
 import Login from './routes/Login.jsx';
 import Logout from './routes/Logout.jsx';
+import Signup from './routes/Signup.jsx';
 import NotFound from './routes/NotFound.jsx';
 import Feed from './routes/Feed.jsx';
 import Group from './routes/Group.jsx';
 
-
-
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Feed />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/logout",
+    path: '/logout',
     element: <Logout />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
   {
     path: "/user/:userID",
@@ -34,21 +32,16 @@ const router = createBrowserRouter([
   },
   {
     path: '/group/:groupid',
-    element: <Group />
+    element: <Group />,
   },
   {
-    path: "/notfound",
+    path: '/notfound',
     element: <NotFound />,
   },
-
 ]);
 
-const App = props => {
-  return (
-    <RouterProvider router = {router} />
-  );
+const App = (props) => {
+  return <RouterProvider router={router} />;
 };
-
-
 
 export default App;
