@@ -23,7 +23,7 @@ usersRouter.post('/register',
 //login route -get un pw, return jwt
 usersRouter.post('/login', 
   //verifyUser
-  //setLocalStorage
+  //return jwt
   (req, res) => {
     const resp = {
 
