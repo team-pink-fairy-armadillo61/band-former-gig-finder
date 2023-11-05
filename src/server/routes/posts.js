@@ -1,40 +1,41 @@
 const express = require('express');
+const postController = require('../controllers/postController.js');
 
 const postsRouter = express.Router();
 
 //get all posts
 postsRouter.get('/', 
-//middleware goes here  
+  postController.getPosts, 
   (req, res) => {
-    return res.status(200).send('postsRouter.get > working!'/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.posts);
   });
 
 //get a post by an id
 postsRouter.get('/:id', 
-//middleware goes here  
+  postController.findPost,
   (req, res) => {
-    return res.status(200).send(`postsRouter.get/:id > working! ${req.params.id}`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.foundPost);
   });
 
 //post a post
 postsRouter.post('/', 
-//middleware goes here  
+  postController.addPost,  
   (req, res) => {
-    return res.status(200).send(`postsRouter.post / > working!`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.addedPost);
   });
 
 //patch a post by id
 postsRouter.patch('/:id', 
-//middleware goes here  
+  postController.updatePost,
   (req, res) => {
-    return res.status(200).send(`postsRouter.patch/:id > working! ${req.params.id}`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.updatedPost);
   });
 
 //delete a post b yid
 postsRouter.delete('/:id', 
-//middleware goes here  
+  postController.deletePost,  
   (req, res) => {
-    return res.status(200).send(`postsRouter.delete/:id > working! ${req.params.id}`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.deletedPost);
   });
 
 
