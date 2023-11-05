@@ -10,7 +10,7 @@ export const authApi = createApi({
       const token = getState().auth.userToken;
       if (token) {
        // include token in req header
-        headers.set('authorization', `Bearer ${token}`);
+        headers.set('authorization', `${token}`);
         return headers;
       }
     },

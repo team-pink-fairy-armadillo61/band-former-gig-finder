@@ -46,3 +46,62 @@ userController.getUser = async (req, res, next) => {
   }
 };
 
+userController.createUser = async (req, res, next) => {
+  try {
+    const { name, userName, password } = req.body;
+    const foundUser = await model.User.findOne({ userName });
+    if (foundUser) {
+      return next({
+        log: `userController.createUser: User with username already exists: ${foundUser.userName}`,
+        code: 400,
+        message: {err: 'Bad Request'},
+      });
+    } else {
+      const newUser = new model({userName, name, password});
+      const dbNewUser = await newUser.save();
+      res.locals.userId = dbNewUser._id;
+      return next();
+    }
+  } catch(err) {
+    return next({
+      log: `Express error handler caught error at userController.createUser: ${err}`,
+      message: {err: 'Error Occured'},
+    });
+  }
+};
+
+userController.verifyUser = async (req, res, next) => {
+  try {
+    const result = await model.findOne({userName: req.body.userName}).exec();
+    if (result === null) {
+      //fix this in the component to handle the error
+      console.log('navigation to signup is required')
+      return next({
+        log: `userController.verifyUser: No such user with username.`,
+        code: 400,
+        message: {err: 'No such username.'},
+      });
+    } else {
+      const bool =  await bcrypt.compare(req.body.password, result.password);
+      if (bool) {
+        res.locals.userId = result._id;
+        return next();
+      } else {
+        //fix this in the component to handle the error
+        console.log('password is incorrect')
+        return next({
+          log: `userController.verifyUser:password is incorrect: ${req.body.password}`,
+          code: 400,
+          message: {err: 'wrong password.'},
+        });
+      }
+    }
+  } catch(err) {
+    return next({
+      log: `Express error handler caught error at userController.verifyUser: ${err}`,
+      message: {err: 'Error Occured'},
+    });
+  }
+}
+
+module.exports = userController;
