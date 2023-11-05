@@ -13,14 +13,36 @@ usersRouter.get('/',
 
 //post new user
 usersRouter.post('/', 
-//middleware goes here  
+  //createUser
+  //setCookie
   (req, res) => {
     return res.status(200).send(`usersRouter.post/:id > working! ${req.params.id}`/*some stuff from middleware*/);
   });
 
+//login route
+usersRouter.post('/login', 
+  //verifyUser
+  //setCookieStartSession
+  (req, res) => {
+    const resp = {
+
+    };
+    return res.status(200).json(resp);
+  });
+
+//logout route
+usersRouter.post('/logout', 
+  //verifyUser
+  //setCookieStartSession
+  (req, res) => {
+    const resp = {
+
+    };
+    return res.status(200).json(resp);
+  });
 
 
-  
+
 //get one user by ID
 usersRouter.get('/:id', 
 //middleware goes here  
