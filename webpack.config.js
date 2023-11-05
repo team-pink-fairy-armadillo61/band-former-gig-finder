@@ -22,7 +22,11 @@ const config = {
     },
     headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/api/**': {
+      '/posts/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+      '/users/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },
