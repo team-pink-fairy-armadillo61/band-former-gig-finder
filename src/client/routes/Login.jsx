@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Login = props => {
 
 
-  
+
   return (
     <div className='wrap-container'>
       <header id='login-title'>Gig Finder</header>
@@ -12,7 +12,7 @@ const Login = props => {
       <div className='inner'>
         <form>
           <label htmlFor='username'>Username</label><br />
-          <input type='username' placeholder='username' required></input><br />
+          <input type='text' placeholder='username' required></input><br />
 
           <label htmlFor='password'>Password</label><br />
           <input type='password' placeholder='password' required></input><br />
