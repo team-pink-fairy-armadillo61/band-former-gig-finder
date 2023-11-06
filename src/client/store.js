@@ -1,14 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 
+//import the slices
+import postSlice from './postSlice';
+import userSlice from './userSlice';
 
 export const store = configureStore({
-    reducer: {
-        plan: planSlice,
-        user: userSlice
-    },
-})
-
-export type RootState = ReturnType<typeof store.getState>
-
-export type AppDispatch = typeof store.dispatch
-
+  reducer: {
+    post: postSlice,
+    user: userSlice,
+  },
+});
