@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from 'react-router-dom';
+import '../styles/stylesheet.scss';
 
 
 const Login = props => {
@@ -22,7 +23,7 @@ const Login = props => {
           <button type='submit'>Login</button>
         </Form>
 
-        <div>
+        <div id='signedup'>
           <Link to='/signup'>Sign up here!</Link>
         </div>
       </div>

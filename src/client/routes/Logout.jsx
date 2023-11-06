@@ -10,7 +10,7 @@ const Logout = props => {
     <div className='wrap-container'>
       <header id='logout-title'>You Are Logged Out!</header>
 
-      <div className='inner'>
+      <div className='signedout'>
         <Link to='/login'>Login</Link>
       </div>
 
