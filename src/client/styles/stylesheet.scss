@@ -1,4 +1,66 @@
 // import 'stylesheet.scss'
+@import 'variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Jost:ital,wght@0,300;0,400;0,700;1,300&family=Raleway:wght@800&family=Rubik+Marker+Hatch&display=swap');
+
 * {
     font-size: 10px;
+}
+#feed-wrap-container {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+
+}
+
+.post-title {
+    font-family: Jost, sans-serif;
+    color: $font-light-orange;
+    // color:rgb(245, 220, 203);
+    font-size: 2em;
+    margin: 0.2em;
+    padding: auto;
+    font-weight: bold;
+    background: rgb(0,0,0,0.2);
+    padding: 0.1em;
+}
+.post-date {
+    color: $font-light-orange;
+
+}
+.feed-posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    color: antiquewhite;
+    font-weight: bold;
+    background: rgb(0,0,0,0.2);
+    width: 40em;
+    margin:auto;
+    font-size: 1rem;
+    padding: 3em;
+
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $font-light-orange;
+    background:rgb(0,0,0,0.3)
+}
+body {
+    background-image: url('./img/musiciansbg.jpeg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.sidebar-username, .sidebar-name {
+    color: #47236e;;
+    font-size: 1.5rem;
+    background: rgb(255,255,255,0.2);
+    padding: 0.3em;
+}
+.sidebar-name {
+    color: #351b51;
 }

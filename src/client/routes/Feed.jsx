@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import FeedPosts from './feed-components/FeedPosts.jsx';
 import Sidebar from './feed-components/Sidebar.jsx';
+import '../styles/stylesheet.scss';
 
 const Feed = props => {
 
@@ -20,21 +21,24 @@ const Feed = props => {
   //       console.log(error);
   //       console.log('Error fetching data', error);
   //     });
-  // }, [posts]); 
+  // }, [posts]);
 
   const feedPosts = posts.map((el, i) => {
     // console.log(el);
     return <FeedPosts key={ i } />;
   });
-  
+
   return (
     <div id='feed-wrap-container'>
       <div id='feed-inner'>
         {/* feed items */}
         { feedPosts }
-        {/* sidebar */}
-        <Sidebar />
       </div>
+      <div id='sidebar'>
+        {/* sidebar */}
+         <Sidebar />
+      </div>
+
     </div>
   );
 };
