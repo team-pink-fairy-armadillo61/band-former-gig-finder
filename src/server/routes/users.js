@@ -23,7 +23,7 @@ usersRouter.post('/',
   userController.addUser, 
   authController.createAuthJWT,
   (req, res) => {
-    return res.status(200).json(res.locals.addedUser);
+    return res.status(200).json({user: res.locals.addedUser, token: res.locals.token});
   });
 
 //login route -get un pw, return jwt
