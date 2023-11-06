@@ -57,7 +57,7 @@ userController.addUser = async (req, res, next) => {
 
   } catch (error) {
     return next({
-      log: `'Express error handler caught error at userController.addUser': ${error}`,
+      log: `Express error handler caught error at userController.addUser: ${error}`,
       message: {err: 'Error Occured'}, 
     });
   }
