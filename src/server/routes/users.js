@@ -1,4 +1,5 @@
 const express = require('express');
+const userController = require('../controllers/userController.js');
 
 
 const usersRouter = express.Router();
@@ -6,16 +7,16 @@ const usersRouter = express.Router();
 
 //get all users
 usersRouter.get('/', 
-//middleware goes here  
+  userController.getAllUsers, 
   (req, res) => {
-    return res.status(200).send(`usersRouter.get / > working!`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.users);
   });
 
 //post new user
 usersRouter.post('/', 
-//middleware goes here  
+  userController.addUser, 
   (req, res) => {
-    return res.status(200).send(`usersRouter.post/:id > working! ${req.params.id}`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.addedUser);
   });
 
 
@@ -23,24 +24,24 @@ usersRouter.post('/',
   
 //get one user by ID
 usersRouter.get('/:id', 
-//middleware goes here  
+  userController.getUser, 
   (req, res) => {
-    return res.status(200).send( `usersRouter.get/:id > working! ${req.params.id}`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.foundUser);
   });
 
 //patch user by ID
 usersRouter.patch('/:id', 
-//middleware goes here  
+  userController.updateUser,  
   (req, res) => {
-    return res.status(200).send(`usersRouter.patch/:id > working! ${req.params.id}`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.updateUser);
   });
 
 
 //delete user by id
 usersRouter.delete('/:id', 
-//middleware goes here  
+  userController.deleteUser,  
   (req, res) => {
-    return res.status(200).send(`usersRouter.delete/:id > working! ${req.params.id}`/*some stuff from middleware*/);
+    return res.status(200).json(res.locals.deletedUser);
   });
 
 
