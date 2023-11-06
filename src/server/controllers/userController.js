@@ -1,5 +1,5 @@
 const model = require('../models/bandFormerModels');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const userController = {};
 
 userController.updateUser = async (req, res, next) => {

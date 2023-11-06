@@ -1,12 +1,12 @@
 //simple store for testing
 
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../features/auth/userSlice';
+import userReducer from './slices/userSlice.js';
 import { authApi } from './slices/authService';
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
+    user: userReducer,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
