@@ -15,12 +15,18 @@
 .post-title {
     font-family: Jost, sans-serif;
     color: $font-light-orange;
-    font-size: 20px;
-    margin: 10px;
+    // color:rgb(245, 220, 203);
+    font-size: 2em;
+    margin: 0.2em;
     padding: auto;
     font-weight: bold;
+    background: rgb(0,0,0,0.2);
+    padding: 0.1em;
 }
+.post-date {
+    color: $font-light-orange;
 
+}
 .feed-posts {
     display: flex;
     flex-direction: column;
@@ -28,7 +34,11 @@
     align-self: center;
     color: antiquewhite;
     font-weight: bold;
-    background: rgb(0,0,0,0.3);
+    background: rgb(0,0,0,0.2);
+    width: 40em;
+    margin:auto;
+    font-size: 1rem;
+    padding: 3em;
 
 }
 
@@ -43,4 +53,14 @@ body {
     background-image: url('./img/musiciansbg.jpeg');
     background-size: 100%;
     background-repeat: no-repeat;
+}
+
+.sidebar-username, .sidebar-name {
+    color: #47236e;;
+    font-size: 1.5rem;
+    background: rgb(255,255,255,0.2);
+    padding: 0.3em;
+}
+.sidebar-name {
+    color: #351b51;
 }
