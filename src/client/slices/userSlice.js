@@ -8,7 +8,7 @@ const userToken = localStorage.getItem('userToken')
   : null;
 
 const initialState = {
-  loading: 'idle',
+  loading: 'idle', // 'idle', 'pending', 'succeeded', 'failed'
   userInfo: {}, // for user object
   userToken, // for storing the JWT
   error: null,
