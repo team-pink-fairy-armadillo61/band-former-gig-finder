@@ -1,10 +1,8 @@
 const express = require('express');
 const userController = require('../controllers/userController.js');
-
-
 const usersRouter = express.Router();
 const authController = require('../controllers/authController.js');
-const userController = require('../controllers/userController.js');
+
 //get all users//don't use this
 usersRouter.get('/', 
   userController.getAllUsers, 
@@ -13,15 +11,17 @@ usersRouter.get('/',
   });
 
 //post new user (register)
-usersRouter.post('/register', 
-  userController.createUser,
-  authController.createAuthJWT,
-  (req, res) => {
-    return res.status(200).json(res.locals.token);
-  });
+// usersRouter.post('/register', 
+//   userController.createUser,
+//   authController.createAuthJWT,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.token);
+//   });
+
 //post new user
 usersRouter.post('/', 
   userController.addUser, 
+  authController.createAuthJWT,
   (req, res) => {
     return res.status(200).json(res.locals.addedUser);
   });

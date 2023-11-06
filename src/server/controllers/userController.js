@@ -19,7 +19,7 @@ userController.updateUser = async (req, res, next) => {
     return next();
   } catch (error) {
     return next({
-      log: 'Express error handler caught error at userController.updateUser',
+      log: `Express error handler caught error at userController.updateUser:${error}`,
       message: {err: 'Error Occured'},
     });
   }
@@ -41,7 +41,7 @@ userController.getUser = async (req, res, next) => {
 
   } catch (error) {
     return next({
-      log: 'Express error handler caught error at userController.getUser',
+      log: `Express error handler caught error at userController.getUser: ${error}`,
       message: {err: 'Error Occured'},
     });
   }
@@ -49,15 +49,24 @@ userController.getUser = async (req, res, next) => {
 
 userController.addUser = async (req, res, next) => {
   try {
-    const { name, username, password, instrumentation, videoURL, profilephoto_URL, location, availability, email, short_bio, socialmedia_link,  user_role } = req.body;
-    const addedUser = await model.User.create(req.body);
-    res.locals.addedUser = addedUser;
+    const { name, userName, password} = req.body;
+    const foundUser = await model.User.findOne({ userName });
+    if (foundUser) {
+      return next({
+        log: `userController.createUser: User with username already exists: ${foundUser.userName}`,
+        code: 400,
+        message: {err: 'Bad Request'},
+      });
+    } else {
+      const addedUser = await model.User.create(req.body);
+      res.locals.addedUser = addedUser;
+      res.locals.userId = addedUser._id;
 
-    return next();
-
+      return next();
+    }
   } catch (error) {
     return next({
-      log: `'Express error handler caught error at userController.addUser': ${error}`,
+      log: `Express error handler caught error at userController.addUser: ${error}`,
       message: {err: 'Error Occured'}, 
     });
   }
@@ -90,29 +99,29 @@ userController.deleteUser = async (req, res, next) => {
   }
 };
 
-userController.createUser = async (req, res, next) => {
-  try {
-    const { name, userName, password } = req.body;
-    const foundUser = await model.User.findOne({ userName });
-    if (foundUser) {
-      return next({
-        log: `userController.createUser: User with username already exists: ${foundUser.userName}`,
-        code: 400,
-        message: {err: 'Bad Request'},
-      });
-    } else {
-      const newUser = new model({userName, name, password});
-      const dbNewUser = await newUser.save();
-      res.locals.userId = dbNewUser._id;
-      return next();
-    }
-  } catch(err) {
-    return next({
-      log: `Express error handler caught error at userController.createUser: ${err}`,
-      message: {err: 'Error Occured'},
-    });
-  }
-};
+// userController.createUser = async (req, res, next) => {
+//   try {
+//     const { name, userName, password } = req.body;
+//     const foundUser = await model.User.findOne({ userName });
+//     if (foundUser) {
+//       return next({
+//         log: `userController.createUser: User with username already exists: ${foundUser.userName}`,
+//         code: 400,
+//         message: {err: 'Bad Request'},
+//       });
+//     } else {
+//       const newUser = new model({userName, name, password});
+//       const dbNewUser = await newUser.save();
+//       res.locals.userId = dbNewUser._id;
+//       return next();
+//     }
+//   } catch(err) {
+//     return next({
+//       log: `Express error handler caught error at userController.createUser: ${err}`,
+//       message: {err: 'Error Occured'},
+//     });
+//   }
+// };
 
 userController.verifyUser = async (req, res, next) => {
   try {
