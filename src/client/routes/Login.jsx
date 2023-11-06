@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Form } from 'react-router-dom';
+
 
 const Login = props => {
 
@@ -10,15 +12,15 @@ const Login = props => {
       <header id='login-title'>Gig Finder</header>
 
       <div className='inner'>
-        <form>
+        <Form method="post">
           <label htmlFor='username'>Username</label><br />
-          <input type='text' placeholder='username' required></input><br />
+          <input type='username' placeholder='username' name='username' required></input><br />
 
           <label htmlFor='password'>Password</label><br />
-          <input type='password' placeholder='password' required></input><br />
+          <input type='password' placeholder='password' name='password' required></input><br />
 
           <button type='submit'>Login</button>
-        </form>
+        </Form>
 
         <div>
           <Link to='/signup'>Sign up here!</Link>
