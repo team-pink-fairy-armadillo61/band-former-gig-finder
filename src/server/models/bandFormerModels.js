@@ -23,7 +23,7 @@ const userSchema = new Schema({
     required: true,
   },
   profilephoto_URL: String,
-  instrumentation: String,
+  instrumentation: Array,
   location: String,
   availability: Boolean,
   email: String,
