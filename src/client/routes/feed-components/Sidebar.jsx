@@ -16,9 +16,9 @@ const Sidebar = props => {
   // const clicker = () => {
   //   dispatch(createPost(data));
   // };
-  
+
   return (
-    <div id='sidebar'>
+    <div >
       {/* profile photo goes here if stretch hits */}
       <h2 className='sidebar-username'>{ user.userName }</h2>
       <h4 className='sidebar-name'>{ user.name }</h4>

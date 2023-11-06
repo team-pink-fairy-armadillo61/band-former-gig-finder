@@ -6,8 +6,8 @@ const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR;
 
 mongoose.connect(uri,  { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('CONNECTION OPEN!!!'))
-    .catch(err => console.log(err));
+  .then(() => console.log('CONNECTION OPEN!!!'))
+  .catch(err => console.log(err));
 
 const Schema = mongoose.Schema;
 
