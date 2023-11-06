@@ -10,7 +10,7 @@ postController.addPost = async (req, res, next) => {
 
   } catch (error) {
     return next({
-      log: 'Express error handler caught error at postController.addPost',
+      log: `'Express error handler caught error at postController.addPost': ${error}`,
       message: {err: 'Error Occured'}, 
     });
   }
@@ -25,6 +25,21 @@ postController.getPosts = async (req, res, next) => {
     return next({
       log: 'Express error handler caught error at postController.getPosts',
       message: {err: 'Error Occured'},
+    });
+  }
+};
+
+postController.findPost = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const foundPost = await model.Post.findOne({_id: id});
+    res.locals.foundPost = foundPost; 
+    return next();
+  } catch (error) {
+    return next({
+      log: `'Express error handler caught error at postController.findPost': ${error}`,
+      message: {err: 'Error Occured'}, 
     });
   }
 };
@@ -59,3 +74,5 @@ postController.deletePost = async (req, res, next) => {
     });
   }
 };
+
+module.exports = postController;
