@@ -19,7 +19,9 @@ userController.updateUser = async (req, res, next) => {
       short_bio,
       socialmedia_link,
       user_role,
-    } = req.body;
+    } = res.locals.body;
+
+    console.log('body', res.locals.body);
     const updatedUser = await model.User.findOneAndUpdate(
       { _id: id },
       {
@@ -153,7 +155,8 @@ userController.deleteUser = async (req, res, next) => {
 
 userController.verifyUser = async (req, res, next) => {
   try {
-    const result = await model.findOne({ userName: req.body.userName }).exec();
+    //console.log('verify user', req.body);
+    const result = await model.User.findOne({ userName: req.body.userName }).exec();
     if (result === null) {
       //fix this in the component to handle the error
       console.log('navigation to signup is required');
@@ -165,7 +168,22 @@ userController.verifyUser = async (req, res, next) => {
     } else {
       const bool = await bcrypt.compare(req.body.password, result.password);
       if (bool) {
+        const shallowCopy = {
+          name: result.name,
+          userName: result.userName,
+          profilephoto_URL: result.profilephoto_URL,
+          instrumentation: result.instrumentation,
+          location: result.location,
+          availability: result.availability,
+          email: result.email,
+          videoURL: result.videoURL,
+          short_bio: result.short_bio,
+          socialmedia_link: result.socialmedia_link,
+          user_role: result.uuser_role,
+        };
+
         res.locals.userId = result._id;
+        res.locals.userData = shallowCopy;
         return next();
       } else {
         //fix this in the component to handle the error

@@ -38,11 +38,15 @@ authController.verifyJWT = async (req, res, next) => {
       if (result !== null) {
         console.log('User is logged in!');
         res.locals.loggedIn = true;
+        res.locals.body = req.body;
+        console.log('body set', res.locals.body)
         return next();
       } else {
         //handle this redirect on the client side
         console.log('User is not logged in, need to redirect');
         res.locals.loggedIn = false;
+        res.locals.body = req.body;
+        console.log('body set', res.locals.body)
         return next(next({
           log: `authController.verifyJWT: JWT is invalid, user needs to login again.`,
           code: 400,
@@ -55,6 +59,35 @@ authController.verifyJWT = async (req, res, next) => {
         status: 500,
         message: { err: 'An error occurred' },
       });
+    }
+  }
+}
+
+
+authController.verifyJWTBody = async (req, res, next) => {
+  const { token } = req.body;
+  if (token) {
+    try{
+      const decoded = jwt.verify(token, secret);
+      const result = await User.findById(decoded.id);
+      if (result !== null) {
+        console.log('User is logged in!');
+        res.locals.loggedIn = true;
+        return next();
+      } else {
+        //handle this redirect on the client side
+        console.log('User is not logged in, need to redirect');
+        res.locals.loggedIn = false;
+        console.log('body set', res.locals.body)
+        return next(next({
+          log: `authController.verifyJWT: JWT is invalid, user needs to login again.`,
+          code: 400,
+          message: {err: 'New Login required.'},
+        }));
+      }
+    } catch(err) {
+      res.locals.loggedIn = false;
+      return next();
     }
   }
 }

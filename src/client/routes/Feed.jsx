@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import FeedPosts from './feed-components/FeedPosts.jsx';
 import Sidebar from './feed-components/Sidebar.jsx';
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../slices/userSlice';
 
 const Feed = props => {
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   // test data for feed posts:
+  const userToken = useSelector(data => data.user.userToken);
   const posts = ['Looking for guitarist...', 'Gig Opportunity: Need Bands for Local Festival', 'JAM SESSION THIS SUNDAY!!'];
 
   // const [posts, updatePosts] = useState([]);
@@ -21,6 +27,38 @@ const Feed = props => {
   //       console.log('Error fetching data', error);
   //     });
   // }, [posts]); 
+
+  useEffect(() =>{
+    const fetchData = async(userToken) => {
+      const resp = await fetch('/users/verify', {
+        method: "POST",
+        headers: {"Content-Type": "application/json",},
+        mode: "no-cors",
+        body: JSON.stringify({token: userToken})
+      });
+      const outcome = await resp.json();
+      return outcome;
+    };
+    if (userToken) {
+      fetchData(userToken)
+        .then(outcome => {
+          if (outcome.success) {
+            setTimeout(()=>{
+              navigate('/');
+            },1000);
+          } else {
+            dispatch(logout());
+            navigate('/login');
+          }
+        })
+        .catch(err => {
+          dispatch(logout());
+          navigate('/login');
+        });
+    } else {
+      navigate('/login');
+    }
+  },[userToken]);
 
   const feedPosts = posts.map((el, i) => {
     // console.log(el);
