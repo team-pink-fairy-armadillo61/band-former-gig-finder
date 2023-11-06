@@ -1,7 +1,7 @@
 {
   "name": "band-former-gig-finder",
   "version": "1.0.0",
-  "description": "WIP ",
+  "description": "A music matchmaking app with basic CRUD-functionality. Built using React Router and Redux Toolkit utilizing MongoDb for storage.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
