@@ -49,7 +49,6 @@ userController.getUser = async (req, res, next) => {
 
 userController.addUser = async (req, res, next) => {
   try {
-    const { name, username, password, instrumentation, videoURL, profilephoto_URL, location, availability, email, short_bio, socialmedia_link,  user_role } = req.body;
     const addedUser = await model.User.create(req.body);
     res.locals.addedUser = addedUser;
 
@@ -57,7 +56,7 @@ userController.addUser = async (req, res, next) => {
 
   } catch (error) {
     return next({
-      log: `'Express error handler caught error at userController.addUser': ${error}`,
+      log: `Express error handler caught error at userController.addUser: ${error}`,
       message: {err: 'Error Occured'}, 
     });
   }
@@ -70,7 +69,7 @@ userController.getAllUsers = async (req, res, next) => {
     return next();
   } catch (error) {
     return next({
-      log: `'Express error handler caught error at userController.getAllUsers': ${error}`,
+      log: `Express error handler caught error at userController.getAllUsers: ${error}`,
       message: {err: 'Error Occured'}, 
     }); 
   }
@@ -84,7 +83,7 @@ userController.deleteUser = async (req, res, next) => {
     return next();
   } catch (error) {
     return next({
-      log: `'Express error handler caught error at userController.deleteUser': ${error}`,
+      log: `Express error handler caught error at userController.deleteUser: ${error}`,
       message: {err: 'Error Occured'}, 
     }); 
   }

@@ -3,14 +3,13 @@ const postController = {};
 
 postController.addPost = async (req, res, next) => {
   try {
-    const { title, dates, user_id, description } = req.body;
     const addedPost = await model.Post.create(req.body);
     res.locals.addedPost = addedPost;
     return next();
 
   } catch (error) {
     return next({
-      log: `'Express error handler caught error at postController.addPost': ${error}`,
+      log: `Express error handler caught error at postController.addPost: ${error}`,
       message: {err: 'Error Occured'}, 
     });
   }
@@ -38,7 +37,7 @@ postController.findPost = async (req, res, next) => {
     return next();
   } catch (error) {
     return next({
-      log: `'Express error handler caught error at postController.findPost': ${error}`,
+      log: `Express error handler caught error at postController.findPost: ${error}`,
       message: {err: 'Error Occured'}, 
     });
   }
