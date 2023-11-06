@@ -15,7 +15,7 @@ async function action({ request }) {
 const Login = props => {
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
 
-  
+
   return (
     <div className='wrap-container'>
       <header id='login-title'>Gig Finder</header>
