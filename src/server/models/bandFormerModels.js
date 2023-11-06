@@ -2,12 +2,13 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const uri = process.env.DB_URI;
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR;
 
-mongoose.connect(uri,  { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('CONNECTION OPEN!!!'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 const Schema = mongoose.Schema;
 
@@ -35,19 +36,18 @@ const userSchema = new Schema({
   user_role: String,
 });
 
-userSchema.pre('save', async function(next){
+userSchema.pre('save', async function (next) {
   try {
-    const hash = await bcrypt.hash(this.password, SALT_WORK_FACTOR);
+    const hash = await bcrypt.hash(this.password, Number(SALT_WORK_FACTOR));
     this.password = hash;
-    return next ();
-  } catch(err) {
+    return next();
+  } catch (err) {
     return next({
       log: `userSchema: a DB error occured on pre-save hook: ${err}`,
       status: 500,
       message: { err: 'An error occurred' },
     });
   }
-  
 });
 
 const User = mongoose.model('user', userSchema);
