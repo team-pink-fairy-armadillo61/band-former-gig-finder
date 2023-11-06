@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { createPost } from '';
 import { logout } from '../slices/userSlice';
 
@@ -25,7 +25,7 @@ const Profile = props => {
   // console.log('data', data);
 
   // create post button
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // const clicker = () => {
   //   dispatch(createPost(data));
@@ -33,7 +33,7 @@ const Profile = props => {
 
   // reset userToken to null on logout
   const userLogout = () => {
-    logout();
+    dispatch(logout());
   };
 
   const [userData, setData] = useState(initialData);
