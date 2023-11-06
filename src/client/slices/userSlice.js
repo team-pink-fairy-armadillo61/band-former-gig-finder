@@ -29,6 +29,9 @@ const userSlice = createSlice({
     setCredentials: (state, action) => {
       state.userInfo = action.payload;
     },
+    updateUser: (state, action) => {
+      state.userInfo = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder

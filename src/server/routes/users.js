@@ -4,14 +4,12 @@ const usersRouter = express.Router();
 const authController = require('../controllers/authController.js');
 
 //get all users//don't use this
-usersRouter.get('/', 
-  userController.getAllUsers, 
-  (req, res) => {
-    return res.status(200).json(res.locals.users);
-  });
+usersRouter.get('/', userController.getAllUsers, (req, res) => {
+  return res.status(200).json(res.locals.users);
+});
 
 //post new user (register)
-// usersRouter.post('/register', 
+// usersRouter.post('/register',
 //   userController.createUser,
 //   authController.createAuthJWT,
 //   (req, res) => {
@@ -19,50 +17,57 @@ usersRouter.get('/',
 //   });
 
 //post new user
-usersRouter.post('/', 
-  userController.addUser, 
+usersRouter.post(
+  '/',
+  userController.addUser,
   authController.createAuthJWT,
   (req, res) => {
     return res.status(200).json(res.locals.addedUser);
-  });
+  }
+);
 
 //login route -get un pw, return jwt
-usersRouter.post('/login', 
+usersRouter.post(
+  '/login',
   userController.verifyUser,
   authController.createAuthJWT,
   (req, res) => {
     return res.status(200).json(res.locals.token);
-  });
+  }
+);
 
 //logout route
 
 //get one user by ID
-usersRouter.get('/:id', 
+usersRouter.get(
+  '/:id',
   authController.verifyJWT,
   userController.getUser,
   (req, res) => {
     return res.status(200).json(res.locals.foundUser);
-  });
+  }
+);
 
 //patch user by ID
-usersRouter.patch('/:id', 
+usersRouter.patch(
+  '/:id',
   authController.verifyJWT,
-  userController.updateUser,  
+  userController.updateUser,
   (req, res) => {
     return res.status(200).json(res.locals.updateUser);
-  });
-
+  }
+);
 
 //delete user by id
-usersRouter.delete('/:id', 
+usersRouter.delete(
+  '/:id',
   authController.verifyJWT,
-  userController.deleteUser,  
+  userController.deleteUser,
   (req, res) => {
     return res.status(200).json(res.locals.deletedUser);
-  });
-
-
+  }
+);
 
 module.exports = {
-  usersRouter: usersRouter
+  usersRouter: usersRouter,
 };
