@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 // import { useSelector, useDispatch } from "react-redux";
 // import { createPost } from '';
 
@@ -33,36 +33,36 @@ const Profile = props => {
   const [userData, setData] = useState(initialData);
   
   return (
-    <div className="prof-container">
+    <div className='wrap-container'>
       <div>
-        <button id="feedButton">house icon</button>
+        <button id='feedButton'>house icon</button>
       </div>
-      <div className="prof-inner">
-        {/* <img src={ props.photo } alt="profile photo" /> */}
-        <h1 className="username">{ userData.userName }</h1>
+      <div className='inner'>
+        {/* <img src={ props.photo } alt='profile photo' /> */}
+        <h1 className='username'>{ userData.userName }</h1>
         {/* basic info goes here */}
-        <div className="basics">
+        <div className='basics'>
           Name: { userData.name }<br />
           Location: { userData.location }<br />
           Contact Email: { userData.email }<br />
           Bio: { userData.short_bio }<br />
         </div>
         {/* extra info (instruments, music, etc) goes here */}
-        <div className="extra">
+        <div className='extra'>
           Instrument: { userData.instrumentation.join(', ') }<br />
           Available: { userData.availability }<br />
         </div>
         {/* embedded content + social media? */}
-        <div className="embedded-content">
+        <div className='embedded-content'>
           Social Media: { userData.socialmedia_link }<br />
           {/* <video src={ userData.videoURL } /> */}
-          <iframe width="560" height="315" src={ userData.videoURL } title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe width='560' height='315' src={ userData.videoURL } title='YouTube video player' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>
         </div>
-        <button id="logout">logout</button>
-        {/* <button id="make-post" onClick={ clicker }>make post</button> */}
+        <button id='logout'>logout</button>
+        {/* <button id='make-post' onClick={ clicker }>make post</button> */}
       </div>
     </div>
-  )
+  );
 };
 
 
