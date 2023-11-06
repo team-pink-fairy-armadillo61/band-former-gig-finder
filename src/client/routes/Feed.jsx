@@ -4,6 +4,7 @@ import Sidebar from './feed-components/Sidebar.jsx';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../slices/userSlice';
+import '../styles/stylesheet.scss';
 
 const Feed = props => {
 
@@ -26,7 +27,7 @@ const Feed = props => {
   //       console.log(error);
   //       console.log('Error fetching data', error);
   //     });
-  // }, [posts]); 
+  // }, [posts]);
 
   useEffect(() =>{
     const fetchData = async(userToken) => {
@@ -64,15 +65,18 @@ const Feed = props => {
     // console.log(el);
     return <FeedPosts key={ i } />;
   });
-  
+
   return (
     <div id='feed-wrap-container'>
       <div id='feed-inner'>
         {/* feed items */}
         { feedPosts }
-        {/* sidebar */}
-        <Sidebar />
       </div>
+      <div id='sidebar'>
+        {/* sidebar */}
+         <Sidebar />
+      </div>
+
     </div>
   );
 };
