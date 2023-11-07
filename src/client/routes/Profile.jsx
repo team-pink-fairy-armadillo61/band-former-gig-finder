@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 // import { createPost } from '';
-import { logout } from '../slices/userSlice';
-import '../styles/stylesheet.scss';
+
 import { useNavigate } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
+import { logout, setCredentials } from '../slices/userSlice';
+import '../styles/stylesheet.scss';
+
 
 const initialData = {
   name: 'Johnny BeGood',
@@ -39,10 +42,16 @@ const Profile = props => {
   const userLogout = () => {
     dispatch(logout());
   };
-  const navigate = useNavigate();
+
+   const navigate = useNavigate();
+  const data = useLoaderData();
+  console.log('data', data)
+
+ 
   // const toFeed = () => {
   //   navigate('/');
   // }
+
 
 
   const [userData, setData] = useState(initialData);
@@ -60,8 +69,10 @@ const Profile = props => {
         {/* <img src={ props.photo } alt='profile photo' /> */}
         <h1 className='username'>{ userInfo.userName }</h1>
         {/* basic info goes here */}
+
+
         <div className='pDiv'>
-          <div id='pLabel'>Name: </div>{ userData.name }
+          <div id='pLabel'>Name: </div>{ userInfo.name }
         </div><br />
         <div className='pDiv'>
           <div id='pLabel'>Location: </div>{ userData.location }
@@ -75,11 +86,12 @@ const Profile = props => {
 
         {/* extra info (instruments, music, etc) goes here */}
         <div className='pDiv'>
-        <div id='pLabel'>Instrument: </div>{ userData.instrumentation.join(', ') }<br />
+        <div id='pLabel'>Instrument: </div>{ userInfo.instrumentation.join(', ') }<br />
           </div><br />
         <div className='pDiv'>
           <div id='pLabel'>Available: </div> { avail }<br />
         </div> <br />
+
         {/* embedded content + social media? */}
         <div className='embedded-content'>
         <div id='pLabel'>Social Media: </div>{ userData.socialmedia_link }<br />
