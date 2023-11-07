@@ -5,6 +5,7 @@ import { logout } from '../slices/userSlice';
 import { useDispatch, useSelector} from 'react-redux';
 // import inplaceVerify from '../slices/inplaceVerify.js';
 
+import '../styles/stylesheet.scss';
 
 
 const Login = props => {
@@ -88,11 +89,11 @@ const Login = props => {
         >
         </input><br />
 
-        <button type='submit' onClick={submitForm}>Login</button>
+        <button type='submit' onClick={submitForm} id='login-button'>Login</button>
         
 
         <div>
-          <Link to='/signup'>Sign up here!</Link>
+          <Link to='/signup' id='signedup'>Sign up here!</Link>
         </div>
       </div>
 
