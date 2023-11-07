@@ -50,8 +50,15 @@ usersRouter.post('/login',
 
 //get one user by ID
 usersRouter.get('/:id', 
-  authController.verifyJWT,
   userController.getUser,
+  (req, res) => {
+    return res.status(200).json(res.locals.foundUser);
+  });
+
+//get current user by token
+usersRouter.post('/profile', 
+  authController.verifyJWTBody,
+  userController.getUserByToken,
   (req, res) => {
     return res.status(200).json(res.locals.foundUser);
   });

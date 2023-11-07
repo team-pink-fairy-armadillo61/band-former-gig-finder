@@ -38,6 +38,7 @@ authController.verifyJWT = async (req, res, next) => {
       if (result !== null) {
         console.log('User is logged in!');
         res.locals.loggedIn = true;
+        res.locals.userId = decoded.id;
         res.locals.body = req.body;
         console.log('body set', res.locals.body)
         return next();
@@ -45,6 +46,7 @@ authController.verifyJWT = async (req, res, next) => {
         //handle this redirect on the client side
         console.log('User is not logged in, need to redirect');
         res.locals.loggedIn = false;
+        res.locals.userId = decoded.id;
         res.locals.body = req.body;
         console.log('body set', res.locals.body)
         return next(next({
@@ -73,17 +75,21 @@ authController.verifyJWTBody = async (req, res, next) => {
       if (result !== null) {
         console.log('User is logged in!');
         res.locals.loggedIn = true;
+        res.locals.userId = decoded.id;
+        res.locals.body = req.body;
         return next();
       } else {
         //handle this redirect on the client side
         console.log('User is not logged in, need to redirect');
         res.locals.loggedIn = false;
+        res.locals.userId = decoded.id;
+        res.locals.body = req.body;
         console.log('body set', res.locals.body)
-        return next(next({
+        return next({
           log: `authController.verifyJWT: JWT is invalid, user needs to login again.`,
           code: 400,
           message: {err: 'New Login required.'},
-        }));
+        });
       }
     } catch(err) {
       res.locals.loggedIn = false;
