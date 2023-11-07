@@ -13,17 +13,17 @@ const postSlice = createSlice({
     },
     editPost: (state, action) => {
       const { postId, updatedPost } = action.payload;
-      const oldPost = state.posts.filter((ele) => (ele.id = postId));
+      const oldPost = state.posts.find((ele) => ele.id === postId);
       const index = state.posts.indexOf(oldPost);
       state.posts.splice(index, 1, updatedPost);
     },
     findPost: (state, action) => {
       const { postId } = action.payload;
-      const foundPost = state.posts.filter((ele) => (ele.id = postId));
+      const foundPost = state.posts.find((ele) => ele.id === postId);
     },
     deletePost: (state, action) => {
       const { postId } = action.payload;
-      const deletedPost = state.posts.filter((ele) => (ele.id = postId));
+      const deletedPost = state.posts.find((ele) => ele.id === postId);
       const index = state.posts.indexOf(deletedPost);
       state.posts.splice(index, 1);
     },
