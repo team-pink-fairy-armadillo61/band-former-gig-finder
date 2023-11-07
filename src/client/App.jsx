@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Profile from './routes/Profile.jsx';
 import Login from './routes/Login.jsx';
@@ -8,6 +9,8 @@ import Signup from './routes/Signup.jsx';
 import NotFound from './routes/NotFound.jsx';
 import Feed from './routes/Feed.jsx';
 import Group from './routes/Group.jsx';
+
+
 
 const router = createBrowserRouter([
   {
@@ -27,8 +30,17 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
+    // path: "/user/:userID",
     path: "/user/:userID",
     element: <Profile />,
+    loader: ({request, params}) => {
+      return fetch(`/users/${params.userID}`, {
+        method: "GET",
+        headers: {"Content-Type": "application/json"},
+        mode: "no-cors",
+      });
+    },
+  
   },
   {
     path: '/group/:groupid',
