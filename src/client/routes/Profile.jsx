@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 // import { createPost } from '';
 import { logout } from '../slices/userSlice';
 import '../styles/stylesheet.scss';
-
+import { useNavigate } from 'react-router-dom';
 
 const initialData = {
   name: 'Johnny BeGood',
@@ -17,7 +17,6 @@ const initialData = {
   short_bio: 'A cool guy new to the coast looking for people to jam with!',
   // socialmedia_link: '',
 };
-
 
 const Profile = props => {
 
@@ -36,43 +35,54 @@ const Profile = props => {
   const userLogout = () => {
     dispatch(logout());
   };
+  const navigate = useNavigate();
+  // const toFeed = () => {
+  //   navigate('/');
+  // }
+
 
   const [userData, setData] = useState(initialData);
 
+  const avail = userData.availability ? 'Yes' : 'No';
+
+
+
   return (
-    <div className='wrap-container'>
+    <div className='profile-container'>
       <div>
-        <button id='feedButton'>house icon</button>
+        <button className="button-87" id='feedButton' onClick={ ()=> navigate('/') }>Feeds</button>
       </div>
       <div className='inner'>
         {/* <img src={ props.photo } alt='profile photo' /> */}
         <h1 className='username'>{ userData.userName }</h1>
         {/* basic info goes here */}
         <div className='pDiv'>
-          <p id='pLabel'>Name: </p>{ userData.name }
+          <div id='pLabel'>Name: </div>{ userData.name }
         </div><br />
         <div className='pDiv'>
-          <p id='pLabel'>Location: </p>{ userData.location }
+          <div id='pLabel'>Location: </div>{ userData.location }
         </div><br />
         <div className='pDiv'>
-          <p id='pLabel'>Contact Email: </p>{ userData.email }
+          <div id='pLabel'>Contact Email: </div>{ userData.email }
         </div><br />
         <div className='pDiv'>
-          <p id='pLabel'>Bio: </p>{ userData.short_bio }
+          <div id='pLabel'>Bio: </div>{ userData.short_bio }
         </div><br />
 
         {/* extra info (instruments, music, etc) goes here */}
-        <div className='extra'>
-          Instrument: { userData.instrumentation.join(', ') }<br />
-          Available: { userData.availability }<br />
-        </div>
+        <div className='pDiv'>
+        <div id='pLabel'>Instrument: </div>{ userData.instrumentation.join(', ') }<br />
+          </div><br />
+        <div className='pDiv'>
+          <div id='pLabel'>Available: </div> { avail }<br />
+        </div> <br />
         {/* embedded content + social media? */}
         <div className='embedded-content'>
-          Social Media: { userData.socialmedia_link }<br />
+        <div id='pLabel'>Social Media: </div>{ userData.socialmedia_link }<br />
           {/* <video src={ userData.videoURL } /> */}
           <iframe width='560' height='315' src={ userData.videoURL } title='YouTube video player' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>
         </div>
-        <button id='logout' onClick={ userLogout }>logout</button>
+        <button className='button-12' id='logout' onClick={ userLogout }>logout</button>
         {/* <button id='make-post' onClick={ clicker }>make post</button> */}
       </div>
     </div>

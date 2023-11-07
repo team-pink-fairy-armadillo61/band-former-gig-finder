@@ -15,7 +15,7 @@ const Login = props => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const userToken = useSelector(data => data.user.userToken);
-  
+
   useEffect(() =>{
     const fetchData = async(userToken) => {
       const resp = await fetch('/users/verify', {
@@ -42,7 +42,7 @@ const Login = props => {
         .catch(err => {
           dispatch(logout());
           navigate(0);
-          
+
         });
     }
   },[userToken]);
@@ -70,10 +70,10 @@ const Login = props => {
       <header id='login-title'>Gig Finder</header>
 
       <div className='inner'>
-        
+
         <label htmlFor='username'>Username</label><br />
-        <input type='username' 
-          placeholder='username' 
+        <input type='username'
+          placeholder='username'
           value={username}
           onChange={handleUNChange}
           name='username' required
@@ -81,7 +81,7 @@ const Login = props => {
         </input><br />
 
         <label htmlFor='password'>Password</label><br />
-        <input type='password' 
+        <input type='password'
           placeholder='password'
           value={password}
           onChange={handlePWChange}
@@ -90,7 +90,7 @@ const Login = props => {
         </input><br />
 
         <button type='submit' onClick={submitForm}>Login</button>
-        
+
 
         <div id='signedup'>
           <Link to='/signup'>Sign up here!</Link>

@@ -70,14 +70,25 @@ body {
 .pDiv {
     display: flex;
     align-items: center;
-    margin: 2px;
+    margin: 0;
     padding: 0;
+    font-family: Jost, sans-serif;
 }
-#plabel {
+#pLabel {
     margin-right: 5px;
-    color: red;
-}
+    font-weight: bold;
 
+}
+.profile-container {
+    margin-left: 50px;
+    background: rgb(0,0,0,0.2);
+    width: auto;
+    padding: 20px;
+
+    h1 {
+        font-family: Rubik Marker Hatch, sans-serif;
+    }
+}
 .wrap-container {
     display: flex;
     flex-direction: column;
@@ -117,11 +128,72 @@ body {
 }
 
 #login-title {
+    font-family: Rubik Marker Hatch, sans-serif;
     font-family: Jost;
     font-size: 25px;
 }
 
 #logout-title {
+    font-family: Rubik Marker Hatch, sans-serif;
     font-family: Jost;
     font-size: 25px;
+}
+
+
+
+/* CSS */
+.button-87 {
+  margin: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-87:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.button-87:active {
+  transform: scale(0.95);
+}
+
+
+
+/* CSS */
+.button-12 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+
+  background: #6E6D70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-12:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
 }
