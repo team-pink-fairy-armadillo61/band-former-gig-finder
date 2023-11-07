@@ -52,7 +52,7 @@ const Profile = props => {
       <div>
         <button className="button-87" id='feedButton' onClick={ ()=> navigate('/') }>Feeds</button>
       </div>
-      <div className='inner'>
+      <div className='profileinner'>
         {/* <img src={ props.photo } alt='profile photo' /> */}
         <h1 className='username'>{ userData.userName }</h1>
         {/* basic info goes here */}
