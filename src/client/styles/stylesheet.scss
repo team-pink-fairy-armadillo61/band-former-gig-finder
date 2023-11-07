@@ -66,3 +66,14 @@ body {
 .sidebar-name {
     color: #351b51;
 }
+
+.pDiv {
+    display: flex;
+    align-items: center;
+    margin: 2px;
+    padding: 0;
+}
+#plabel {
+    margin-right: 5px;
+    color: red;
+}

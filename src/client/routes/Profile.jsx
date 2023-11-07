@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // import { useSelector, useDispatch } from "react-redux";
 // import { createPost } from '';
+import '../styles/stylesheet.scss';
 
 
 const initialData = {
@@ -31,7 +32,7 @@ const Profile = props => {
   // };
 
   const [userData, setData] = useState(initialData);
-  
+
   return (
     <div className='wrap-container'>
       <div>
@@ -41,12 +42,19 @@ const Profile = props => {
         {/* <img src={ props.photo } alt='profile photo' /> */}
         <h1 className='username'>{ userData.userName }</h1>
         {/* basic info goes here */}
-        <div className='basics'>
-          Name: { userData.name }<br />
-          Location: { userData.location }<br />
-          Contact Email: { userData.email }<br />
-          Bio: { userData.short_bio }<br />
-        </div>
+        <div className='pDiv'>
+          <p id='pLabel'>Name: </p>{ userData.name }
+        </div><br />
+        <div className='pDiv'>
+          <p id='pLabel'>Location: </p>{ userData.location }
+        </div><br />
+        <div className='pDiv'>
+          <p id='pLabel'>Contact Email: </p>{ userData.email }
+        </div><br />
+        <div className='pDiv'>
+          <p id='pLabel'>Bio: </p>{ userData.short_bio }
+        </div><br />
+
         {/* extra info (instruments, music, etc) goes here */}
         <div className='extra'>
           Instrument: { userData.instrumentation.join(', ') }<br />
