@@ -89,11 +89,11 @@ const Login = props => {
         >
         </input><br />
 
-        <button type='submit' onClick={submitForm}>Login</button>
+        <button type='submit' onClick={submitForm} id='login-button'>Login</button>
         
 
-        <div id='signedup'>
-          <Link to='/signup'>Sign up here!</Link>
+        <div>
+          <Link to='/signup' id='signedup'>Sign up here!</Link>
         </div>
       </div>
 

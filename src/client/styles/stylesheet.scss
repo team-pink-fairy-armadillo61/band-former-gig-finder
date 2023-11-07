@@ -106,8 +106,9 @@ body {
 }
 
 #login-title {
-    font-family: Jost;
-    font-size: 25px;
+    font-family: Rubik Marker Hatch, Jost, sans-serif;
+    font-size: 48px;
+    padding: 12px;
 }
 
 #logout-title {
@@ -115,6 +116,36 @@ body {
     font-size: 25px;
 }
 
+div .inner {
+    display: flex;
+    flex-direction: column;
+    background: rgba(43, 31, 15, 0.8);
+    padding: 22px 100px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-family: Jost, sans-serif;
+    color: white;
+}
+
+#signedup {
+    color: orange;
+    font-size: 18px;
+    font-family: Jost, sans-serif;
+    padding-top: 15px;
+}
+
+#login-button {
+    background-color: #4B3B40;
+    border: none;
+    color: white;
+    font-family: Jost, sans-serif;
+    padding: 12px 28px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
 
 
 
