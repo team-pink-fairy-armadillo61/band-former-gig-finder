@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../styles/stylesheet.scss';
 
 
 const FeedPosts = props => {
@@ -12,12 +13,12 @@ const FeedPosts = props => {
 
   // is this here or just in feed??
   // const [post, setPost] = useState(post);
-  
+
   return (
     <div className='feed-posts'>
 
       <h4 className='post-title'>{ post.title }</h4><br />
-      <span>{ post.dates }</span><br />
+      <span className='post-date'>{ post.dates }</span><br />
       <p>{ post.description }</p>
 
       {/* button here to message owner of post */}
