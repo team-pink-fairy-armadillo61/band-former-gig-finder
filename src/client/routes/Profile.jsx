@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 // import { createPost } from '';
-import { logout } from '../slices/userSlice';
-
+import { useNavigate } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
+import { logout, setCredentials } from '../slices/userSlice';
 
 const initialData = {
   name: 'Johnny BeGood',
@@ -19,6 +20,10 @@ const initialData = {
 
 
 const Profile = props => {
+  const state = useSelector(data => data.user);
+  const userToken = state.userToken;
+  const userInfo = useLoaderData();
+  const [idGood, setIdGood ] = useState(false);
 
   // pull data from user account to populate profile
   // const userData = useSelector(state => state.userData);
@@ -35,6 +40,9 @@ const Profile = props => {
   const userLogout = () => {
     dispatch(logout());
   };
+  
+  const data = useLoaderData();
+  console.log('data', data)
 
   const [userData, setData] = useState(initialData);
   
@@ -45,17 +53,17 @@ const Profile = props => {
       </div>
       <div className='inner'>
         {/* <img src={ props.photo } alt='profile photo' /> */}
-        <h1 className='username'>{ userData.userName }</h1>
+        <h1 className='username'>{ userInfo.userName }</h1>
         {/* basic info goes here */}
         <div className='basics'>
-          Name: { userData.name }<br />
+          Name: { userInfo.name }<br />
           Location: { userData.location }<br />
           Contact Email: { userData.email }<br />
           Bio: { userData.short_bio }<br />
         </div>
         {/* extra info (instruments, music, etc) goes here */}
         <div className='extra'>
-          Instrument: { userData.instrumentation.join(', ') }<br />
+          Instrument: { userInfo.instrumentation.join(', ') }<br />
           Available: { userData.availability }<br />
         </div>
         {/* embedded content + social media? */}

@@ -74,6 +74,39 @@ userController.getUser = async (req, res, next) => {
     });
   }
 };
+userController.getUserByToken = async (req, res, next) => {
+  console.log('Get user by token called')
+  try {
+    const id =  res.locals.userId;
+    const foundUser = await model.User.findOne({ _id: id });
+
+    if (!foundUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const shallowCopy = {
+      name: foundUser.name,
+      id: foundUser._id,
+      userName: foundUser.userName,
+      profilephoto_URL: foundUser.profilephoto_URL,
+      instrumentation: foundUser.instrumentation,
+      location: foundUser.location,
+      availability: foundUser.availability,
+      email: foundUser.email,
+      videoURL: foundUser.videoURL,
+      short_bio: foundUser.short_bio,
+      socialmedia_link: foundUser.socialmedia_link,
+      user_role: foundUser.user_role,
+    };
+
+    res.locals.foundUser = shallowCopy;
+    return next();
+  } catch (error) {
+    return next({
+      log: `Express error handler caught error at userController.getUser: ${error}`,
+      message: { err: 'Error Occured' },
+    });
+  }
+};
 
 userController.addUser = async (req, res, next) => {
   try {
@@ -170,6 +203,7 @@ userController.verifyUser = async (req, res, next) => {
       if (bool) {
         const shallowCopy = {
           name: result.name,
+          id: result._id,
           userName: result.userName,
           profilephoto_URL: result.profilephoto_URL,
           instrumentation: result.instrumentation,
