@@ -8,14 +8,12 @@ const authController = require('../controllers/authController.js');
 usersRouter.use(express.json({type: "text/plain"}));
 
 //get all users//don't use this
-usersRouter.get('/', 
-  userController.getAllUsers, 
-  (req, res) => {
-    return res.status(200).json(res.locals.users);
-  });
+usersRouter.get('/', userController.getAllUsers, (req, res) => {
+  return res.status(200).json(res.locals.users);
+});
 
 //post new user (register)
-// usersRouter.post('/register', 
+// usersRouter.post('/register',
 //   userController.createUser,
 //   authController.createAuthJWT,
 //   (req, res) => {
@@ -23,12 +21,14 @@ usersRouter.get('/',
 //   });
 
 //post new user
-usersRouter.post('/', 
-  userController.addUser, 
+usersRouter.post(
+  '/',
+  userController.addUser,
   authController.createAuthJWT,
   (req, res) => {
     return res.status(200).json({user: res.locals.addedUser, token: res.locals.token});
   });
+
 
 //verify tokens provided in components
 usersRouter.post('/verify',
@@ -39,6 +39,7 @@ usersRouter.post('/verify',
 );
 
 //login route -get un pw, return jwt
+
 usersRouter.post('/login',
   userController.verifyUser,
   authController.createAuthJWT,
@@ -46,14 +47,17 @@ usersRouter.post('/login',
     return res.status(200).json({userInfo:res.locals.userData, token: res.locals.token});
   });
 
+
 //logout route
 
 //get one user by ID
+
 usersRouter.get('/:id', 
   userController.getUser,
   (req, res) => {
     return res.status(200).json(res.locals.foundUser);
-  });
+  }
+);
 
 //get current user by token
 usersRouter.post('/profile', 
@@ -64,24 +68,26 @@ usersRouter.post('/profile',
   });
 
 //patch user by ID
-usersRouter.patch('/:id', 
+usersRouter.patch(
+  '/:id',
   authController.verifyJWT,
-  userController.updateUser, 
+  userController.updateUser,
+
   (req, res) => {
     return res.status(200).json(res.locals.updateUser);
-  });
-
+  }
+);
 
 //delete user by id
-usersRouter.delete('/:id', 
+usersRouter.delete(
+  '/:id',
   authController.verifyJWT,
-  userController.deleteUser,  
+  userController.deleteUser,
   (req, res) => {
     return res.status(200).json(res.locals.deletedUser);
-  });
-
-
+  }
+);
 
 module.exports = {
-  usersRouter: usersRouter
+  usersRouter: usersRouter,
 };
