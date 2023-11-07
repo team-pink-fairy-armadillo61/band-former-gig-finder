@@ -1,9 +1,26 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const express = require('express');
+const { fixRequestBody } = require('http-proxy-middleware');
+
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+
+function fixProxyReq(proxyReq, req, res) {
+  //console.log('in proxy', req)
+  Object.keys(req.headers).forEach(function (key) {
+    proxyReq.setHeader(key, req.headers[key]);
+});
+proxyReq.setHeader('Content-type', 'application/json');
+}
+
+function fixProxyRes(proxyRes, req, res) {
+  Object.keys(proxyRes.headers).forEach(function (key) {
+    res.append(key, proxyRes.headers[key]);
+}); // remove header from response
+}
 
 const config = {
   entry: path.join(__dirname, 'src', 'client', 'index.js'),
@@ -25,10 +42,21 @@ const config = {
       '/posts/**': {
         target: 'http://localhost:3000/',
         secure: false,
+        
+        changeOrigin: true,
+        onProxyReq: fixProxyReq,
+        onProxyRes: fixProxyRes,
+
       },
       '/users/**': {
         target: 'http://localhost:3000/',
         secure: false,
+        changeOrigin: false,
+        withCredentials: true,
+        headers: {'Content-Type': 'application/json'},
+        onProxyReq: fixProxyReq,
+        onProxyRes: fixProxyRes,
+
       },
       '/assets/**': {
         target: 'http://localhost:3000/',

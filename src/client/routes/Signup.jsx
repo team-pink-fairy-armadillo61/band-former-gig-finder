@@ -13,7 +13,7 @@ const Signup = init => {
       </header>
 
       <div className='inner'>
-        <form>
+        <form id='signupform'>
           <label htmlFor='userName'>Username</label><br />
           <input type='text' id='userName' placeholder='user name' required></input><br />
 
@@ -29,18 +29,18 @@ const Signup = init => {
           <label htmlFor='email'>Email</label><br />
           <input type='email' id='email' placeholder='Enter your email'></input><br />
 
-          <label htmlFor='availability'>Availability</label><br />
+          <label htmlFor='availability'>Availability</label><br /> 
           <input type='checkbox' id='availability' name='availability'></input><br />
 
           <label htmlFor='short_bio'>Short Bio</label><br />
           <textarea id='short_bio' placeholder='Enter your short bio here' /><br />
 
-          <label htmlFor='user_role'>UserType
-            <select id='user_role' name='user_role'>
-              <option value="musician">Musician</option>
-              <option value="customer">Customer</option>
-            </select>
-          </label><br />
+          <label htmlFor='user_role'>UserType</label><br />
+          <select id='user_role' name='user_role'>
+            <option value="musician">Musician</option>
+            <option value="customer">Customer</option>
+          </select><br />
+          
 
           <label htmlFor='socialmedia_link'>Social media link</label><br />
           <input type='text' id='socialmedia_link' placeholder='Enter your link here'></input><br />

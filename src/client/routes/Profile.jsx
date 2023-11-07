@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-// import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { createPost } from '';
+import { logout } from '../slices/userSlice';
 import '../styles/stylesheet.scss';
 
 
@@ -25,11 +26,16 @@ const Profile = props => {
   // console.log('data', data);
 
   // create post button
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // const clicker = () => {
   //   dispatch(createPost(data));
   // };
+
+  // reset userToken to null on logout
+  const userLogout = () => {
+    dispatch(logout());
+  };
 
   const [userData, setData] = useState(initialData);
 
@@ -66,7 +72,7 @@ const Profile = props => {
           {/* <video src={ userData.videoURL } /> */}
           <iframe width='560' height='315' src={ userData.videoURL } title='YouTube video player' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>
         </div>
-        <button id='logout'>logout</button>
+        <button id='logout' onClick={ userLogout }>logout</button>
         {/* <button id='make-post' onClick={ clicker }>make post</button> */}
       </div>
     </div>
