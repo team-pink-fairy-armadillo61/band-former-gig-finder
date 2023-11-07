@@ -109,7 +109,6 @@ userController.getUserByToken = async (req, res, next) => {
 };
 
 userController.addUser = async (req, res, next) => {
-  console.log(req.body)
   try {
     const { name, userName, password } = req.body;
     
@@ -124,7 +123,7 @@ userController.addUser = async (req, res, next) => {
       const addedUser = await model.User.create({ name, userName, password });
       res.locals.addedUser = addedUser;
       res.locals.userId = addedUser._id;
-
+      console.log('add user success', addedUser)
       return next();
     }
   } catch (error) {
