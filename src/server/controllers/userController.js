@@ -109,8 +109,10 @@ userController.getUserByToken = async (req, res, next) => {
 };
 
 userController.addUser = async (req, res, next) => {
+  console.log(req.body)
   try {
     const { name, userName, password } = req.body;
+    
     const foundUser = await model.User.findOne({ userName });
     if (foundUser) {
       return next({

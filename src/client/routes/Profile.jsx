@@ -41,6 +41,7 @@ const Profile = props => {
   // reset userToken to null on logout
   const userLogout = () => {
     dispatch(logout());
+    setTimeout(()=>{navigate('/login')}, 2000);
   };
 
    const navigate = useNavigate();
