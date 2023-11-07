@@ -10,6 +10,7 @@ authController.createAuthJWT = (req, res, next) => {
       const token = jwt.sign({
         id: res.locals.userId, 
       }, secret, { expiresIn: '1h'});
+      console.log('into token!');
       res.locals.token = token;
       return next();
     }catch(err) {

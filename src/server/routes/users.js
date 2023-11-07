@@ -26,6 +26,7 @@ usersRouter.post(
   userController.addUser,
   authController.createAuthJWT,
   (req, res) => {
+    console.log('final part of route')
     return res.status(200).json({user: res.locals.addedUser, token: res.locals.token});
   });
 

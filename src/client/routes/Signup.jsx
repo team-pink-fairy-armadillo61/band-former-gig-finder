@@ -1,9 +1,39 @@
 import React,  { useState, useEffect }  from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/stylesheet.scss';
+import { useNavigate } from 'react-router-dom';
 
-const Signup = init => {
+const Signup = props => {
+  const [username , setUsername] = useState('');
+  const [password , setPassword] = useState('');
+  const [name , setName] = useState('');
+  const navigate = useNavigate();
+  const changeUsername = e => {
+    setUsername(e.target.value);
+  };
+  const changePassword = e => {
+    setPassword(e.target.value);
+  };
+  const changeName = e => {
+    setName(e.target.value);
+  };
 
+
+  const registerUser = async () => {
+    const result = await fetch('/users', {
+      method: 'POST',
+      headers: {"Content-Type": "application/json",},
+      mode: "no-cors",
+      body: JSON.stringify({name: name, userName: username, password: password})
+    });
+    const output = await result.json();
+    if (output){
+      console.log('result', output)
+      localStorage.setItem('ssid', output.token);
+      setTimeout(navigate('/'), 2000);
+    }
+
+  };
 
   return (
 
@@ -13,43 +43,17 @@ const Signup = init => {
       </header>
 
       <div className='inner'>
-        <form id='signupform'>
+  
           <label htmlFor='userName'>Username</label><br />
-          <input type='text' id='userName' placeholder='user name' required></input><br />
+          <input type='text' id='userName'  value={username} onChange={changeUsername} required></input><br />
 
           <label htmlFor='password'>Password</label><br />
-          <input type='password' id='password' placeholder='password' required></input><br />
+          <input type='password' id='password'  value={password} onChange={changePassword} required></input><br />
 
           <label htmlFor='fullname'>Fullname</label><br />
-          <input type='text' id='fullname' placeholder='full name'></input><br />
+          <input type='text' id='fullname' value={name} onChange={changeName} ></input><br />
+          <button type='submit' onClick={registerUser}>Sign Up</button>
 
-          <label htmlFor='location'>Location</label><br />
-          <input type='text' id='location' placeholder='Enter your city'></input><br />
-
-          <label htmlFor='email'>Email</label><br />
-          <input type='email' id='email' placeholder='Enter your email'></input><br />
-
-          <label htmlFor='availability'>Availability</label><br /> 
-          <input type='checkbox' id='availability' name='availability'></input><br />
-
-          <label htmlFor='short_bio'>Short Bio</label><br />
-          <textarea id='short_bio' placeholder='Enter your short bio here' /><br />
-
-          <label htmlFor='user_role'>UserType</label><br />
-          <select id='user_role' name='user_role'>
-            <option value="musician">Musician</option>
-            <option value="customer">Customer</option>
-          </select><br />
-          
-
-          <label htmlFor='socialmedia_link'>Social media link</label><br />
-          <input type='text' id='socialmedia_link' placeholder='Enter your link here'></input><br />
-
-          <label htmlFor='video_url'>Profile page video URL</label><br />
-          <input type='text' id='video_url' placeholder='Enter embeded link here'></input><br />
-
-          <button type='submit'>Sign Up</button>
-        </form>
 
       </div>
 
