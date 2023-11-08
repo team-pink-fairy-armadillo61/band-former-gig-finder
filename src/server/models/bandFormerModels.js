@@ -1,7 +1,8 @@
 // require('dotenv').config({path: `.env.${process.env.NODE_ENV}`});
 require('dotenv').config();
 const mongoose = require('mongoose');
-const uri = process.env.DB_URI;
+// const uri = process.env.DB_URI;
+const uri ='mongodb+srv://pedromontibello:duLDwCt51PfbAJpK@iterationprojectcluster.nlmq8sn.mongodb.net/?retryWrites=true&w=majority';
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR;
 

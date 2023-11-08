@@ -1,7 +1,7 @@
 const jwt = require('node-jsonwebtoken')
 const { User } = require('../models/bandFormerModels.js');
 
-const secret = process.env.JWT_SECRET;
+const secret = `${process.env.JWT_SECRET}`;
 const authController = {};
 
 authController.createAuthJWT = (req, res, next) => {
