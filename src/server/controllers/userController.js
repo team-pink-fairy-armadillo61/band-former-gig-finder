@@ -2,6 +2,7 @@ const model = require('../models/bandFormerModels');
 const bcrypt = require('bcrypt');
 const userController = {};
 
+
 userController.updateUser = async (req, res, next) => {
   try {
     const id = req.params.id;

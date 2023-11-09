@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 // import { createPost } from '';
 
 import { useNavigate } from 'react-router-dom';
@@ -41,17 +41,17 @@ const Profile = props => {
   // reset userToken to null on logout
   const userLogout = () => {
     dispatch(logout());
-    setTimeout(()=>{navigate('/login')}, 2000);
+    setTimeout(()=>{navigate('/login');}, 2000);
   };
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const data = useLoaderData();
-  console.log('data', data)
+  console.log('data', data);
 
  
   // const toFeed = () => {
   //   navigate('/');
-  // }
+  // }  
 
 
 
@@ -87,20 +87,30 @@ const Profile = props => {
 
         {/* extra info (instruments, music, etc) goes here */}
         <div className='pDiv'>
-        <div id='pLabel'>Instrument: </div>{ userInfo.instrumentation.join(', ') }<br />
-          </div><br />
+          <div id='pLabel'>Instrument: </div>{ userInfo.instrumentation.join(', ') }<br />
+        </div><br />
         <div className='pDiv'>
           <div id='pLabel'>Available: </div> { avail }<br />
         </div> <br />
 
         {/* embedded content + social media? */}
         <div className='embedded-content'>
-        <div id='pLabel'>Social Media: </div>{ userData.socialmedia_link }<br />
+          <div id='pLabel'>Social Media: </div>{ userData.socialmedia_link }<br />
           {/* <video src={ userData.videoURL } /> */}
-          <iframe width='560' height='315' src={ userData.videoURL } title='YouTube video player' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>
+          <iframe width='560' height='315' src={ userData.videoURL } title='YouTube video player' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowFullScreen></iframe>
         </div>
         <button className='button-12' id='logout' onClick={ userLogout }>logout</button>
         {/* <button id='make-post' onClick={ clicker }>make post</button> */}
+      </div>
+      <div className='formuoli'>
+        <form action="http://localhost:3000/photo" method="post" encType='multipart/form-data'>
+          <label htmlFor='avatar'>
+            Would you like to upload your avatar?<br/>
+          </label>
+          <input type="file" id="avatar" name="avatar" accept='image/*'/>
+          <input type="hidden" name={userInfo.name} value={ userInfo.name }/>
+          <button id="submitButton" name="submitButton">Submit</button>
+        </form>
       </div>
     </div>
   );
